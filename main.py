@@ -14,6 +14,4 @@ def get_data_from_excel_file(data_path):
     return parsed_data
 
 
-
-
 data_set = get_data_from_excel_file(TESTING_DATA_SET_PATH)
