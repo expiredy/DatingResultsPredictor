@@ -107,7 +107,7 @@ class UnitsDataHolder:
               sinc2_3, intel2_3, fun2_3, amb2_3, shar2_3, attr3_3, sinc3_3, intel3_3, fun3_3, amb3_3, attr5_3, \
               sinc5_3, intel5_3, fun5_3, amb5_3
 
-    def data_of_unit_for_match(self):
+    def get_data_of_unit_for_match(self):
         return {"round": self.number_of_met_people,
                 "position": self.met_place_position_number,
                 "positin1": self.dating_start_position_number,
@@ -125,6 +125,10 @@ class UnitsDataHolder:
                 "field_cd": self.coded_field_of_study_id,
                 "undergra": self.school_grade,
                 }
+
+    def get_units_score(self):
+        return
+
 
 class DatingWaveDataHolder:
     pass
