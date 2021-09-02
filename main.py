@@ -1,8 +1,8 @@
 import numpy
 import tensorflow as tf
 import json
-from StructureObjects import UnitsDataHolder
 from DictKeyConfig import *
+from StructureObjects import UnitsDataHolder
 import matplotlib.pyplot as plt
 
 all_data_keys = ["iid", "id", "gender", "idg", "condtn", "wave", "round", "position", "positin1", "order", "partner",
@@ -53,13 +53,25 @@ def get_data_from_excel_file(data_path, force_data_set_update=False):
         return data
 
 
+def link_current_data_set_to_units(data_set):
+    for unit_id in range(len(data_set[all_data_keys[0]])):
+        yield UnitsDataHolder(*[data_set[key][unit_id] for key in all_data_keys])
+
+
 data_set = get_data_from_excel_file(TESTING_DATA_SET_PATH)
 tf.compat.v1.disable_eager_execution()
+units = list(link_current_data_set_to_units(data_set))
+print(units)
 vectors_data_set = {}
 for key in all_data_keys:
     data_type_from_set = str(list(set([type(element) for element in data_set[key]]))[0]).replace("<class '", "")\
         .replace("'>", "")
-    vectors_data_set[key] = {MAIN_NP_DATA: numpy.asarray(data_set[key]),
-                             TENSORFLOW_PLACE_HOLDER: tf.compat.v1.placeholder(
-                             data_type_from_set.replace("int", "float").replace("str", "string"))}
-n_samples = vectors_data_set[all_data_keys[0]][MAIN_NP_DATA].shape[0]
+    vectors_data_set[key] = {MAIN_NP_DATA_KEY: numpy.asarray(data_set[key]),
+                             TENSORFLOW_PLACE_HOLDER_KEY: tf.compat.v1.placeholder(
+                             data_type_from_set.replace("int", "float").replace("str", "string")),
+                             NEURON_WEIGHT_KEY: tf.Variable(RANDOM_NP.randn(), name="weight"),
+                             NEURON_BIAS_KEY: tf.Variable(RANDOM_NP.randn(), name="bias")}
+
+n_samples = vectors_data_set[all_data_keys[0]][MAIN_NP_DATA_KEY].shape[0]
+print(n_samples)
+
