@@ -1,3 +1,5 @@
+from DictKeyConfig import *
+
 class UnitsDataHolder:
     def __init__(self, iid, id, gender, idg, condtn, wave, round, position, positin1, order, partner, pid, match,
                  int_corr, samerace, age_o, race_o, pf_o_att, pf_o_sin, pf_o_int, pf_o_fun, pf_o_amb, pf_o_sha,
@@ -108,22 +110,22 @@ class UnitsDataHolder:
               sinc5_3, intel5_3, fun5_3, amb5_3
 
     def get_data_of_unit_for_match(self):
-        return {"round": self.number_of_met_people,
-                "position": self.met_place_position_number,
-                "positin1": self.dating_start_position_number,
-                "order": self.number_of_data_that_night,
-                "partner": self.partner_id_by_night_of_events,
-                "match": self.is_match_choice,
-                "int_corr": self.correlation_between_participant_and_partner_ratings_of_interests_time_1,
-                "samerace": self.is_partners_have_same_rice_choice,
-                "age_o": self.age_of_partner,
-                "race_o": self.race_of_partner,
-                "pf_o_att": self.preferences_of_partner,
-                "dec_o": self.decision_of_partner_night_of_even,
-                "atte_o": self.rating_by_partner_night_of_even,
-                "age": self.age,
-                "field_cd": self.coded_field_of_study_id,
-                "undergra": self.school_grade,
+        return {ROUND_KEY: self.number_of_met_people,
+                POSITION_KEY: self.met_place_position_number,
+                POSITIN1_KEY: self.dating_start_position_number,
+                ORDER_KEY: self.number_of_data_that_night,
+                PARTNER_KEY: self.partner_id_by_night_of_events,
+                MATCH_KEY: self.is_match_choice,
+                INT_CORR_KEY: self.correlation_between_participant_and_partner_ratings_of_interests_time_1,
+                SAMERACE_KEY: self.is_partners_have_same_rice_choice,
+                AGE_O_KEY: self.age_of_partner,
+                RACE_O_KEY: self.race_of_partner,
+                PF_O_ATT_KEY: self.preferences_of_partner,
+                DEC_O_KEY: self.decision_of_partner_night_of_even,
+                ATTR_O_KEY: self.rating_by_partner_night_of_even,
+                AGE_KEY: self.age,
+                FIELD_CD_KEY: self.coded_field_of_study_id,
+                UNDERGRA_KEY: self.school_grade,
                 }
 
     def get_units_score(self):
